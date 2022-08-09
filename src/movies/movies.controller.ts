@@ -30,7 +30,7 @@ export class MoviesController {
 
   @Delete('/:id')
   delete(@Param('id') movieId: string) {
-    return `this will delete a movie with the id: ${movieId}`;
+    return this.moviesService.deleteOne(movieId);
   }
 
   @Patch('/:id') //update some parts

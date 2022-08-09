@@ -19,4 +19,9 @@ export class MoviesService {
       ...movieData,
     });
   }
+
+  deleteOne(id: string): boolean {
+    this.movies.filter((movie) => movie.id !== +id);
+    return true;
+  }
 }
