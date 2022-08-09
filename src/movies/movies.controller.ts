@@ -1,20 +1,31 @@
-import { Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
+import { MoviesService } from './movies.service';
 
 @Controller('movies') //Router
 export class MoviesController {
+  constructor(readonly moviesService: MoviesService) {}
+
   @Get()
   getAll() {
-    return 'this will return all movies';
+    return this.moviesService.getAll;
   }
 
   @Get('/:id')
-  getOne(@Param('id') id: string) {
-    return `this will return one movie with the id: ${id}`;
+  getOne(@Param('id') movieId: string) {
+    return this.moviesService.getOne(movieId);
   }
 
   @Post()
-  create() {
-    return 'this will create a movie';
+  create(@Body() movieData) {
+    return this.moviesService.create(movieData);
   }
 
   @Delete('/:id')
